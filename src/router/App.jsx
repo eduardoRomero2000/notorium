@@ -1,19 +1,27 @@
 import React, {useState} from 'react'
+import styled from "styled-components";
 import SideNav from '../components/Generics/SideNav'
-import Routing from '../router/Routing'
-
+// import Login from '../pages/Login/Login'
+import Calendar from "../pages/Calendar";
 function App(props) {
-    const {location}= props
     const [viewSide, setViewSide]= useState(false);
     const handleView = () => {
         setViewSide(!viewSide)
     }
   return (
-      <>
-          {viewSide ? (<SideNav/>): null}
-          <Routing {...props} />
-      </>
+      <ContainerMain>
+          <SideNav/>
+          {/*<Routing {...props} />*/}
+          {/*<Login />*/}
+          <Calendar />
+      </ContainerMain>
   );
 }
+
+const ContainerMain = styled.main`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 80%;
+`
 
 export default App;

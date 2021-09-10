@@ -3,13 +3,16 @@ import { Switch, Route } from 'react-router-dom';
 // import ProtectedRoute from '../system/router/PrivateRoute'
 import Login from "../pages/Login/Login";
 
-const Routing = () => {
+const Routing = ({location}) => {
     return(
-        <Switch>
-            <Route path="/">
-                <Route path="/login" e component={Login} />
-            </Route>
-        </Switch>
+        <>
+            <Switch>
+                <Route path="/">
+                    <Route path="/login" component={Login} />
+                </Route>
+            </Switch>
+        </>
+
     )
 }
 
