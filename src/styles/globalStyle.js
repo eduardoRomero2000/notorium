@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import {createGlobalStyle} from 'styled-components';
 
 /** Estilos globales para toda la pagina */
 
@@ -9,4 +9,4 @@ export const GlobalStyles = createGlobalStyle`
   html{
     font-size: 62.5%
   }
-`
+`;
