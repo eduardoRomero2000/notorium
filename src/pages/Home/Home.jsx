@@ -13,7 +13,7 @@ export const Home = () => {
 					<h2>La mejor forma de organizarte está con <span>Notorium.</span></h2>
 					<div className='welcome-info'>
 						<p>¿Te resulta dificil organizar tu tiempo o equipo de trabajo?</p>
-						<p><span>¡No más!</span>Organiza, planea, administra, agenda y muchas cosas más a través de nuestro producto en sus diferentes modalidades.</p>
+						<p><span>¡No más! </span><b>Organiza, planea, administra y agenda </b>y muchas cosas más a través de nuestro producto en sus diferentes modalidades.</p>
 					</div>
 					<Button text='Conoce más' href=''/>
 				</div>
@@ -25,16 +25,18 @@ export const Home = () => {
 
 const Container = styled.div`
 padding:  3rem 5rem;
-height: 100vh;
+
 
 .welcome-section{
 	display: grid;
 	grid-template-columns: 60% 30%;
 	align-items: center;
 	gap: 10rem;
+	padding: 8rem 0;
 	.welcome-desc{
 		h2{
 			font-size: 6rem;
+			font-weight: 400;
 		}
 		span{
 			color: #2100FF;

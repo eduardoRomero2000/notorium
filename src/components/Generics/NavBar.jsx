@@ -40,8 +40,9 @@ grid-template-columns: 20% 80%;
 padding: 0 1rem;
 align-items: center;
 h1{
-	font-size: 3rem;
+	font-size: 3.25rem;
 	color: #2100FF;
+	font-weight: 600;
 }
 `;
 const Nav = styled.nav`

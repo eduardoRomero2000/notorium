@@ -14,7 +14,7 @@ background-color: #3662FF;
 border-radius: 2rem;
 color: #fff;
 font-size: 1.6rem;
-padding: 1rem 3rem;
+padding: 1.1rem 3rem;
 text-decoration: none;
 width: max-content;
 `;
