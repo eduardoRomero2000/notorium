@@ -3,9 +3,9 @@ import styled from "styled-components";
 import NavBar from "../../components/Generics/NavBar";
 import { Button } from "../../components/Generics/Button";
 import welcomeImage from "../../assets/WelcomeImage.png";
-import Palette from "../../system/globals/palette";
+import Palette from "../../styles/palette";
 
-export const Home = () => {
+const Home = () => {
   return (
     <Container>
       <NavBar />

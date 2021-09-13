@@ -1,105 +1,149 @@
-import React,{useState} from 'react';
-import styled from 'styled-components';
-import logNotorium from '../../assets/LogoNotorium.png';
-import ChangoProfile from '../../assets/Chango profile.png';
-import {HomeSmile, Edit} from 'styled-icons/boxicons-regular';
-import {Alarm, CalendarEvent, Bell} from 'styled-icons/bootstrap';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { HomeSmile, Edit } from "styled-icons/boxicons-regular";
+import { Alarm, CalendarEvent, Bell } from "styled-icons/bootstrap";
+import logNotorium from "../../assets/LogoNotorium.png";
+import ChangoProfile from "../../assets/Chango profile.png";
+import Palette from "../../styles/palette";
 
 const SideNav = () => {
-	const [optionSelected, setOptionSelected]= useState(0);
-	const handleView = (numberView)=>{
-		setOptionSelected(numberView);
-	};
-	return(
-		<ContainerSideMain>
-			<header>
-				<img src={logNotorium} alt="Logo" title='Notorium'/>
-				<h1>NOTORIUM</h1>
-			</header>
-			<CardUser>
-				<img src={ChangoProfile} alt=""/>
-				<div className='user-information'>
-					<h1>Javier Macaco</h1>
-					<span>@Macaquinho</span>
-				</div>
-			</CardUser>
-			<CardItems>
-				<div className={optionSelected === 0 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(0)}>
-					<div>
-						<HomeSmile />
-					</div>
-					<div>
-						<span>Inicio</span>
-					</div>
-				</div>
-				<div className={optionSelected === 1 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(1)}>
-					<div>
-						<Edit />
-					</div>
-					<div>
-						<span>Notas</span>
-					</div>
-				</div>
-				<div className={optionSelected === 2 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(2)}>
-					<div>
-						<Alarm />
-					</div>
-					<div>
-						<span>Pomodoros</span>
-					</div>
-				</div>
-				<div className={optionSelected === 3 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(3)}>
-					<div>
-						<CalendarEvent />
-					</div>
-					<div>
-						<span>Horarios</span>
-					</div>
-				</div>
-				<div className={optionSelected === 4 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(4)}>
-					<div>
-						<Bell />
-					</div>
-					<div>
-						<span>Recordatorios</span>
-					</div>
-				</div>
-				<div className={optionSelected === 5 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(5)}>
-					<div>
-						<HomeSmile />
-					</div>
-					<div>
-						<span>Recordatorios</span>
-					</div>
-				</div>
-			</CardItems>
-			<CardItems>
-				<div className={optionSelected === 6 ? 'menu-items active' : 'menu-items' } onClick={()=> handleView(6)}>
-					<div>
-						<HomeSmile />
-					</div>
-					<div>
-						<span>Preferencias</span>
-					</div>
-				</div>
-			</CardItems>
-		</ContainerSideMain>
-	);
+  const [pathName, setPathName] = useState("/inicio");
+
+  const handlePathName = (name) => {
+    setPathName(name);
+  };
+
+  return (
+    <ContainerSideMain>
+      <header>
+        <img src={logNotorium} alt="Logo" title="Notorium" />
+        <h1>NOTORIUM</h1>
+      </header>
+      <CardUser>
+        <img src={ChangoProfile} alt="" />
+        <div className="user-information">
+          <h1>Javier Macaco</h1>
+          <span>@Macaquinho</span>
+        </div>
+      </CardUser>
+      <CardItems>
+        <Link
+          className={
+            pathName === "/inicio" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/inicio")}
+          to="/home"
+        >
+          <div>
+            <HomeSmile />
+          </div>
+          <div>
+            <span>Inicio</span>
+          </div>
+        </Link>
+        <Link
+          className={pathName === "/notes" ? "menu-items active" : "menu-items"}
+          to="/notes"
+          onClick={() => handlePathName("/notes")}
+        >
+          <div>
+            <Edit />
+          </div>
+          <div>
+            <span>Notas</span>
+          </div>
+        </Link>
+        <Link
+          className={
+            pathName === "/pomodoros" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/pomodoros")}
+          to="/pomodoros"
+        >
+          <div>
+            <Alarm />
+          </div>
+          <div>
+            <span>Pomodoros</span>
+          </div>
+        </Link>
+        <Link
+          className={
+            pathName === "/schedules" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/schedules")}
+          to="/schedules"
+        >
+          <div>
+            <CalendarEvent />
+          </div>
+          <div>
+            <span>Horarios</span>
+          </div>
+        </Link>
+        <Link
+          className={
+            pathName === "/rutinas" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/rutinas")}
+          to="/rutinas"
+        >
+          <div>
+            <Bell />
+          </div>
+          <div>
+            <span>Rutinas</span>
+          </div>
+        </Link>
+        <Link
+          className={
+            pathName === "/reminders" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/reminders")}
+          to="/reminders"
+        >
+          <div>
+            <HomeSmile />
+          </div>
+          <div>
+            <span>Recordatorios</span>
+          </div>
+        </Link>
+      </CardItems>
+      <CardItems>
+        <Link
+          className={
+            pathName === "/preferences" ? "menu-items active" : "menu-items"
+          }
+          onClick={() => handlePathName("/preferences")}
+          to="/preferences"
+        >
+          <div>
+            <HomeSmile />
+          </div>
+          <div>
+            <span>Preferencias</span>
+          </div>
+        </Link>
+      </CardItems>
+    </ContainerSideMain>
+  );
 };
 
 const ContainerSideMain = styled.main`
-  background: #F8FAFF;
+  background: ${Palette.backgroundSide};
   height: 100vh;
   padding: 2rem;
-  header{
+  header {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    h1{
+    h1 {
       font-size: 2.5rem;
     }
-    img{
+    img {
       height: 3rem;
       width: 3rem;
       object-fit: contain;
@@ -110,37 +154,38 @@ const ContainerSideMain = styled.main`
 
 const CardItems = styled.section`
   margin-top: 3rem;
-  background: #FFFFFF;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  background: ${Palette.white};
+  box-shadow: ${Palette.shadow};
   border-radius: 18px;
   padding: 2rem;
-  div:nth-child(1){
+  a:nth-child(1) {
     margin-top: 0;
   }
-  .menu-items{
+  .menu-items {
+    text-decoration: none;
     cursor: pointer;
     width: 100%;
     display: grid;
     grid-template-columns: 40% 60%;
     margin-top: 4rem;
-    svg{
+    svg {
       height: 3rem;
-      color: #9F9F9F;
+      color: ${Palette.gray};
     }
-    span{
+    span {
       font-size: 1.6rem;
-      color: #9F9F9F;
+      color: ${Palette.gray};
     }
-    div:nth-child(2){
+    div:nth-child(2) {
       display: flex;
       align-items: center;
     }
   }
-  .active{
-    svg{
+  .active {
+    svg {
       color: black;
     }
-    span{
+    span {
       color: black;
     }
   }
@@ -149,29 +194,29 @@ const CardItems = styled.section`
 const CardUser = styled.div`
   display: flex;
   margin-top: 3rem;
-  background: #FFFFFF;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  background: ${Palette.white};
+  box-shadow: ${Palette.shadow};
   border-radius: 18px;
   padding: 2rem;
   align-items: center;
-  img{
+  img {
     height: 6rem;
     width: 6rem;
     object-fit: contain;
   }
-  .user-information{
+  .user-information {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    h1{
+    h1 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
     }
-    span{
+    span {
       font-size: 1.4rem;
-      color: #9F9F9F;
+      color: ${Palette.gray};
     }
   }
 `;
