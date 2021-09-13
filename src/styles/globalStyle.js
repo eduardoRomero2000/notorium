@@ -1,8 +1,8 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 /** Estilos globales para toda la pagina */
 
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
   *{
     margin: 0;
@@ -15,3 +15,4 @@ export const GlobalStyles = createGlobalStyle`
 		font-family: 'Poppins', sans-serif;
 	}
 `;
+export default GlobalStyles;
