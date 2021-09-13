@@ -18,10 +18,6 @@ function App() {
           <Routing />
         </ContainerOnePage>
       )}
-      <div className={visibleNavBar ? "wrapper" : "one-page"}>
-        {visibleNavBar ? <SideNav /> : null}
-        <Routing />
-      </div>
     </>
   );
 }

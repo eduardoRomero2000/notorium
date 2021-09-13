@@ -5,6 +5,7 @@ import { HomeSmile, Edit } from "styled-icons/boxicons-regular";
 import { Alarm, CalendarEvent, Bell } from "styled-icons/bootstrap";
 import logNotorium from "../../assets/LogoNotorium.png";
 import ChangoProfile from "../../assets/Chango profile.png";
+import Palette from "../../styles/palette";
 
 const SideNav = () => {
   const [pathName, setPathName] = useState("/inicio");
@@ -131,7 +132,7 @@ const SideNav = () => {
 };
 
 const ContainerSideMain = styled.main`
-  background: #f8faff;
+  background: ${Palette.backgroundSide};
   height: 100vh;
   padding: 2rem;
   header {
@@ -153,8 +154,8 @@ const ContainerSideMain = styled.main`
 
 const CardItems = styled.section`
   margin-top: 3rem;
-  background: #ffffff;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  background: ${Palette.white};
+  box-shadow: ${Palette.shadow};
   border-radius: 18px;
   padding: 2rem;
   a:nth-child(1) {
@@ -169,11 +170,11 @@ const CardItems = styled.section`
     margin-top: 4rem;
     svg {
       height: 3rem;
-      color: #9f9f9f;
+      color: ${Palette.gray};
     }
     span {
       font-size: 1.6rem;
-      color: #9f9f9f;
+      color: ${Palette.gray};
     }
     div:nth-child(2) {
       display: flex;
@@ -193,8 +194,8 @@ const CardItems = styled.section`
 const CardUser = styled.div`
   display: flex;
   margin-top: 3rem;
-  background: #ffffff;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  background: ${Palette.white};
+  box-shadow: ${Palette.shadow};
   border-radius: 18px;
   padding: 2rem;
   align-items: center;
@@ -215,7 +216,7 @@ const CardUser = styled.div`
     }
     span {
       font-size: 1.4rem;
-      color: #9f9f9f;
+      color: ${Palette.gray};
     }
   }
 `;
