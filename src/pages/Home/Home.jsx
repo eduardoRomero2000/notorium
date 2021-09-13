@@ -31,12 +31,13 @@ const Home = () => {
 };
 
 const Container = styled.div`
+  max-width: 1400px;
+  margin: auto;
   padding: 3rem 5rem;
-
   .welcome-section {
     display: grid;
     grid-template-columns: 60% 30%;
-    gap: 10rem;
+    gap: 5rem;
     padding: 8rem 0;
     .welcome-desc {
       h2 {

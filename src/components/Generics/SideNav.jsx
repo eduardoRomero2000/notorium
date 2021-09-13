@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { HomeSmile, Edit } from "styled-icons/boxicons-regular";
+import { HomeSmile, Edit, Dumbbell } from "styled-icons/boxicons-regular";
 import { Alarm, CalendarEvent, Bell } from "styled-icons/bootstrap";
+import { Settings } from "styled-icons/feather";
 import logNotorium from "../../assets/LogoNotorium.png";
 import ChangoProfile from "../../assets/Chango profile.png";
 import Palette from "../../styles/palette";
@@ -90,7 +91,7 @@ const SideNav = () => {
           to="/rutinas"
         >
           <div>
-            <Bell />
+            <Dumbbell />
           </div>
           <div>
             <span>Rutinas</span>
@@ -104,7 +105,7 @@ const SideNav = () => {
           to="/reminders"
         >
           <div>
-            <HomeSmile />
+            <Bell />
           </div>
           <div>
             <span>Recordatorios</span>
@@ -120,7 +121,7 @@ const SideNav = () => {
           to="/preferences"
         >
           <div>
-            <HomeSmile />
+            <Settings />
           </div>
           <div>
             <span>Preferencias</span>
@@ -159,7 +160,7 @@ const CardItems = styled.section`
   border-radius: 18px;
   padding: 2rem;
   a:nth-child(1) {
-    margin-top: 0;
+    padding-top: 0;
   }
   .menu-items {
     text-decoration: none;
@@ -167,7 +168,7 @@ const CardItems = styled.section`
     width: 100%;
     display: grid;
     grid-template-columns: 40% 60%;
-    margin-top: 4rem;
+    padding-top: 4rem;
     svg {
       height: 3rem;
       color: ${Palette.gray};
