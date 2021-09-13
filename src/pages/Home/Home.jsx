@@ -5,7 +5,7 @@ import { Button } from "../../components/Generics/Button";
 import welcomeImage from "../../assets/WelcomeImage.png";
 import Palette from "../../system/globals/palette";
 
-export const Home = () => {
+const Home = () => {
   return (
     <Container>
       <NavBar />
