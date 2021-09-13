@@ -1,25 +1,24 @@
-import React from 'react';
+import React from "react";
 // {useState}
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const Login = () =>{
+const Login = () => {
+  // const getView = () => {
 
-	// const getView = () => {
-
-	// };
-	return(
-		<ContainerMain>
-			<ContainerButtons>
-				<button>Log in</button>
-				<button>Sign Up</button>
-			</ContainerButtons>
-			<form>
-				<div>
-					<input type="text"/>
-				</div>
-			</form>
-		</ContainerMain>
-	);
+  // };
+  return (
+    <ContainerMain>
+      <ContainerButtons>
+        <button type="button">Log in</button>
+        <button type="button">Sign Up</button>
+      </ContainerButtons>
+      <form>
+        <div>
+          <input type="text" />
+        </div>
+      </form>
+    </ContainerMain>
+  );
 };
 
 const ContainerMain = styled.main`
@@ -29,8 +28,6 @@ const ContainerMain = styled.main`
   align-items: center;
   justify-content: center;
 `;
-const ContainerButtons = styled.section`
-
-`;
+const ContainerButtons = styled.section``;
 
 export default Login;

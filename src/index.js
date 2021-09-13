@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./router/App";
 import GlobalStyles from "./styles/globalStyle";
-import history from "./system/router/history";
+import configureStore from "./redux/index";
+
+const store = configureStore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter history={history}>
+  <Provider store={store}>
+    <BrowserRouter>
       <GlobalStyles />
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
