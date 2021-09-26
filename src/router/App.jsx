@@ -5,7 +5,7 @@ import SideNav from "../components/Generics/SideNav";
 import Routing from "./Routing";
 
 function App() {
-  const visibleNavBar = false;
+  const visibleNavBar = true;
   return (
     <>
       {visibleNavBar ? (
