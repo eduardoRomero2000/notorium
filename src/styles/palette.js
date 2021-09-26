@@ -8,6 +8,8 @@ const Palette = {
   blueColor: "#3662FF",
   white: "#fff",
   gray: "#9f9f9f",
+  backgroundCards: "#f9f9f9",
+  grayLight: "#ccc",
 
   /** Shadows */
   shadow: "2px 2px 8px rgba(0, 0, 0, 0.25);",

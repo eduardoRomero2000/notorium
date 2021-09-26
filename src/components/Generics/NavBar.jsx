@@ -51,7 +51,6 @@ const NavBar = () => {
 
 const ContainerNavBar = styled.div`
   width: 100%;
-  border: 1px solid red;
   display: grid;
   grid-template-columns: 20% 80%;
   padding: 0 1rem;
