@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HomeSmile, Edit, Dumbbell } from "styled-icons/boxicons-regular";
@@ -9,11 +9,7 @@ import ChangoProfile from "../../assets/Chango profile.png";
 import Palette from "../../styles/palette";
 
 const SideNav = () => {
-  const [pathName, setPathName] = useState("/inicio");
-
-  const handlePathName = (name) => {
-    setPathName(name);
-  };
+  const locationMenu = window.location.pathname;
 
   return (
     <ContainerSideMain>
@@ -31,9 +27,8 @@ const SideNav = () => {
       <CardItems>
         <Link
           className={
-            pathName === "/inicio" ? "menu-items active" : "menu-items"
+            locationMenu === "/home" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/inicio")}
           to="/home"
         >
           <div>
@@ -44,9 +39,10 @@ const SideNav = () => {
           </div>
         </Link>
         <Link
-          className={pathName === "/notes" ? "menu-items active" : "menu-items"}
+          className={
+            locationMenu === "/notes" ? "menu-items active" : "menu-items"
+          }
           to="/notes"
-          onClick={() => handlePathName("/notes")}
         >
           <div>
             <Edit />
@@ -57,9 +53,8 @@ const SideNav = () => {
         </Link>
         <Link
           className={
-            pathName === "/pomodoros" ? "menu-items active" : "menu-items"
+            locationMenu === "/pomodoros" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/pomodoros")}
           to="/pomodoros"
         >
           <div>
@@ -71,9 +66,8 @@ const SideNav = () => {
         </Link>
         <Link
           className={
-            pathName === "/schedules" ? "menu-items active" : "menu-items"
+            locationMenu === "/schedules" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/schedules")}
           to="/schedules"
         >
           <div>
@@ -85,9 +79,8 @@ const SideNav = () => {
         </Link>
         <Link
           className={
-            pathName === "/rutinas" ? "menu-items active" : "menu-items"
+            locationMenu === "/rutinas" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/rutinas")}
           to="/rutinas"
         >
           <div>
@@ -99,9 +92,8 @@ const SideNav = () => {
         </Link>
         <Link
           className={
-            pathName === "/reminders" ? "menu-items active" : "menu-items"
+            locationMenu === "/reminders" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/reminders")}
           to="/reminders"
         >
           <div>
@@ -115,9 +107,8 @@ const SideNav = () => {
       <CardItems>
         <Link
           className={
-            pathName === "/preferences" ? "menu-items active" : "menu-items"
+            locationMenu === "/preferences" ? "menu-items active" : "menu-items"
           }
-          onClick={() => handlePathName("/preferences")}
           to="/preferences"
         >
           <div>

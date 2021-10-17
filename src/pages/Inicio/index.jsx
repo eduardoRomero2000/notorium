@@ -7,6 +7,7 @@ import es from "dayjs/locale/es";
 import Card from "../../components/Inicio/Card";
 import Palette from "../../styles/palette";
 import "react-calendar/dist/Calendar.css";
+import Wrapper from "../../components/Generics/Wrapper";
 
 dayjs.locale(es);
 
@@ -14,53 +15,55 @@ const Beginning = () => {
   const cardsMap = [{}, {}, {}, {}];
   const valueDate = new Date();
   return (
-    <ContainerMain>
-      <Header>
-        <div>
-          <Filter />
-          <p>Filtro</p>
-        </div>
-        <h4>¿Qué haremos hoy?</h4>
-      </Header>
-      <NotesContainer>
-        <h1>Inicio</h1>
-        <ContainerCards>
-          {cardsMap.map(() => (
-            <Card />
-          ))}
-        </ContainerCards>
-        <hr />
-      </NotesContainer>
-      <RemindersContainer>
-        <h1>Recordatorios</h1>
-        <div className="grid-2">
-          <div className="calendar-container">
-            <h5>Calendario</h5>
-            <div className="calendar-custom">
-              <Calendar value={valueDate} />
+    <Wrapper>
+      <ContainerMain>
+        <Header>
+          <div>
+            <Filter />
+            <p>Filtro</p>
+          </div>
+          <h4>¿Qué haremos hoy?</h4>
+        </Header>
+        <NotesContainer>
+          <h1>Inicio</h1>
+          <ContainerCards>
+            {cardsMap.map(() => (
+              <Card />
+            ))}
+          </ContainerCards>
+          <hr />
+        </NotesContainer>
+        <RemindersContainer>
+          <h1>Recordatorios</h1>
+          <div className="grid-2">
+            <div className="calendar-container">
+              <h5>Calendario</h5>
+              <div className="calendar-custom">
+                <Calendar value={valueDate} />
+              </div>
+            </div>
+            <div className="cards-container">
+              <header className="days">
+                <div className="date-now">
+                  <p className="name-day">
+                    {dayjs().format("dddd").substr(0, 3)}
+                  </p>
+                  <p className="number-day">{dayjs().format("D")}</p>
+                </div>
+                <div className="numbers-reminders">
+                  <p>4 recordatorios</p>
+                </div>
+              </header>
+              <div className="container-items">
+                {cardsMap.map(() => (
+                  <Card />
+                ))}
+              </div>
             </div>
           </div>
-          <div className="cards-container">
-            <header className="days">
-              <div className="date-now">
-                <p className="name-day">
-                  {dayjs().format("dddd").substr(0, 3)}
-                </p>
-                <p className="number-day">{dayjs().format("D")}</p>
-              </div>
-              <div className="numbers-reminders">
-                <p>4 recordatorios</p>
-              </div>
-            </header>
-            <div className="container-items">
-              {cardsMap.map(() => (
-                <Card />
-              ))}
-            </div>
-          </div>
-        </div>
-      </RemindersContainer>
-    </ContainerMain>
+        </RemindersContainer>
+      </ContainerMain>
+    </Wrapper>
   );
 };
 
