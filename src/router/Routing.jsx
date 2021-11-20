@@ -8,7 +8,6 @@ import Notes from "../pages/Notas";
 import Reminders from "../pages/Recordatorios";
 import Beginning from "../pages/Inicio";
 import Pomodoros from "../pages/Pomodoros";
-import Schedules from "../pages/Horarios";
 import Rutinas from "../pages/Rutinas";
 import Preferences from "../pages/Preferencias";
 
@@ -21,7 +20,6 @@ const Routing = () => {
         <Route exact path="/home" component={Beginning} />
         <Route exact path="/notes" component={Notes} />
         <Route exact path="/pomodoros" component={Pomodoros} />
-        <Route exact path="/schedules" component={Schedules} />
         <Route exact path="/reminders" component={Reminders} />
         <Route exact path="/rutinas" component={Rutinas} />
         <Route exact path="/calendar" component={Calendar} />
