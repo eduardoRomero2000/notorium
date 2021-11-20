@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HomeSmile, Edit, Dumbbell } from "styled-icons/boxicons-regular";
-import { Alarm, CalendarEvent, Bell } from "styled-icons/bootstrap";
+import { Alarm, Bell } from "styled-icons/bootstrap";
 import { Settings } from "styled-icons/feather";
 import logNotorium from "../../assets/LogoNotorium.png";
 import ChangoProfile from "../../assets/Chango profile.png";
@@ -62,19 +62,6 @@ const SideNav = () => {
           </div>
           <div>
             <span>Pomodoros</span>
-          </div>
-        </Link>
-        <Link
-          className={
-            locationMenu === "/schedules" ? "menu-items active" : "menu-items"
-          }
-          to="/schedules"
-        >
-          <div>
-            <CalendarEvent />
-          </div>
-          <div>
-            <span>Horarios</span>
           </div>
         </Link>
         <Link

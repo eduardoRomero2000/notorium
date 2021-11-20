@@ -49,7 +49,7 @@ const Notes = () => {
               </Stack>
             </Grid>
             <Grid item xs={3}>
-              <Stack alignItems="center" spacing={2} justifyContent="center">
+              <Stack alignItems="center" spacing={3} justifyContent="center">
                 <Card />
                 <Card />
                 <Card />
