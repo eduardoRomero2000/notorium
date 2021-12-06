@@ -7,13 +7,17 @@ import es from "dayjs/locale/es";
 import Wrapper from "../../components/Generics/Wrapper";
 import Palette from "../../styles/palette";
 import Card from "../../components/Inicio/Card";
+import ModalCreateNote from "../../components/Notes/ModalCreateNote";
+import useNotes from "../../hooks/Notes/useNotes";
 
 dayjs.locale(es);
 
 const Notes = () => {
+  const { anchorEl, open, toggleDrawer } = useNotes();
   return (
     <Wrapper>
       <>
+        <ModalCreateNote anchor={anchorEl} open={open} onClose={toggleDrawer} />
         <Header>
           <Stack direction="row" spacing={3} alignItems="center">
             <Filter size={20} />
@@ -35,7 +39,9 @@ const Notes = () => {
             </section>
           </Stack>
           <hr />
-          <Button type="button">Agregar Nota</Button>
+          <Button onClick={toggleDrawer} type="button">
+            Agregar Nota
+          </Button>
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <Stack alignItems="center" spacing={2} justifyContent="center">
@@ -105,6 +111,7 @@ const Button = styled.button`
   background: ${Palette.blueColor};
   color: ${Palette.white};
   border: none;
+  cursor: pointer;
 `;
 
 export default Notes;
