@@ -49,6 +49,31 @@ const useRoutines = () => {
     }
   };
 
+  const reorderColumns = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result.map((item, index) => ({
+      ...item,
+      index,
+    }));
+  };
+
+  const onDrag = (column) => {
+    const { destination, source } = column;
+    if (destination && source) {
+      const copyColumns = routines.slice();
+      const columnsOrdered = reorderColumns(
+        copyColumns,
+        source.index,
+        destination.index
+      );
+      setRoutines(columnsOrdered);
+    } else {
+      console.error("Error onDrag");
+    }
+  };
+
   useEffect(() => {
     getRoutines();
   }, []);
@@ -60,6 +85,7 @@ const useRoutines = () => {
     toggleDrawer,
     handleRoutine,
     addRoutine,
+    onDrag,
   };
 };
 

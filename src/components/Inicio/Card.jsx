@@ -5,9 +5,9 @@ import { PropTypes } from "prop-types";
 import Palette from "../../styles/palette";
 
 const Item = (props) => {
-  const { title, description, time } = props;
+  const { title, description, time, mb = false } = props;
   return (
-    <Card>
+    <Card mb={mb}>
       <header>
         <h5>{title}</h5>
         <div className="chip-time">{dayjs(time).format("DD.MMM.YY")}</div>
@@ -22,12 +22,14 @@ Item.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   time: PropTypes.string,
+  mb: PropTypes.bool,
 };
 
 Item.defaultProps = {
   title: "",
   description: "",
   time: "",
+  mb: false,
 };
 
 const Card = styled.div`
@@ -39,6 +41,7 @@ const Card = styled.div`
   width: 100%;
   flex-wrap: nowrap;
   position: relative;
+  margin-bottom: ${(props) => (props.mb ? "10px" : "0")};
   header {
     display: flex;
     align-items: center;

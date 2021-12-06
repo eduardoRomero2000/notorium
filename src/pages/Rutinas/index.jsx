@@ -4,7 +4,7 @@ import { Stack, Grid } from "@mui/material";
 import { History } from "styled-icons/boxicons-regular";
 import dayjs from "dayjs";
 import es from "dayjs/locale/es";
-// import { ArrowRightShort } from "styled-icons/bootstrap";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Wrapper from "../../components/Generics/Wrapper";
 import Palette from "../../styles/palette";
 import Card from "../../components/Inicio/Card";
@@ -21,6 +21,7 @@ const Rutinas = () => {
     routines,
     handleRoutine,
     addRoutine,
+    onDrag,
   } = useRoutines();
 
   return (
@@ -83,14 +84,41 @@ const Rutinas = () => {
             <Grid item xs={4}>
               <ContainerCards>
                 <h2>Próximas rutinas</h2>
-                <Stack alignItems="center" spacing={3}>
-                  {routines.map((routine) => (
-                    <Card
-                      title={routine.name}
-                      description={routine.description}
-                      time={routine.date_at_created}
-                    />
-                  ))}
+                <Stack alignItems="center">
+                  <DragDropContext onDragEnd={onDrag}>
+                    <Droppable droppableId="droppable">
+                      {(provided) => (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{ width: "100%", height: "100%" }}
+                        >
+                          {routines.map((routine, index) => (
+                            <Draggable
+                              key={routine.id}
+                              draggableId={routine.id}
+                              index={index}
+                            >
+                              {(provided) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <Card
+                                    title={routine.name}
+                                    description={routine.description}
+                                    time={routine.date_at_created}
+                                    mb
+                                  />
+                                </div>
+                              )}
+                            </Draggable>
+                          ))}
+                        </div>
+                      )}
+                    </Droppable>
+                  </DragDropContext>
                 </Stack>
               </ContainerCards>
             </Grid>
