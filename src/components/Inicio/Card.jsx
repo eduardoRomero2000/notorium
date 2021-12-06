@@ -1,28 +1,42 @@
 import React from "react";
 import styled from "styled-components";
+import dayjs from "dayjs";
+import { PropTypes } from "prop-types";
 import Palette from "../../styles/palette";
 
-const Item = () => {
+const Item = (props) => {
+  const { title, description, time } = props;
   return (
     <Card>
       <header>
-        <h5>Note title</h5>
-        <div className="chip-time">24 min</div>
+        <h5>{title}</h5>
+        <div className="chip-time">{dayjs(time).format("DD.MMM.YY")}</div>
       </header>
-      <p>
-        Realiza tus sesiones de pomodoros, manten tu concentración y mejora tu
-        productividad.
-      </p>
+      <p>{description}</p>
       <div className="border" />
     </Card>
   );
 };
+
+Item.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  time: PropTypes.string,
+};
+
+Item.defaultProps = {
+  title: "",
+  description: "",
+  time: "",
+};
+
 const Card = styled.div`
   padding: 1rem 1rem;
   background: ${Palette.backgroundCards};
   box-shadow: ${Palette.shadow};
   border-radius: 18px;
   min-height: 12rem;
+  width: 100%;
   flex-wrap: nowrap;
   position: relative;
   header {
