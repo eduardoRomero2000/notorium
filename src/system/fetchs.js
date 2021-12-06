@@ -3,7 +3,7 @@ import axios from "axios";
 
 const isProduction = false;
 
-const URL_BASE = isProduction ? "URL_API" : "http://localhost:3000/";
+const URL_BASE = isProduction ? "URL_API" : "http://localhost:3000/api/";
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -20,7 +20,7 @@ export const getData = async (url) => {
     });
     return { success: true, info: response.data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { success: false, info: err.message };
   }
 };
@@ -36,7 +36,7 @@ export const postData = async (url, data) => {
     });
     return { success: true, info: response.data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { success: false, info: err.message };
   }
 };
@@ -52,7 +52,7 @@ export const putData = async (url, data) => {
     });
     return { success: true, info: response.data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { success: false, info: err.message };
   }
 };
@@ -68,7 +68,7 @@ export const deleteData = async (url, data) => {
     });
     return { success: true, info: response.data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { success: false, info: err.message };
   }
 };
