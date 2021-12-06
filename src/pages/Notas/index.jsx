@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Grid } from "@mui/material";
+import { Stack, Grid, Skeleton } from "@mui/material";
 import { Filter } from "styled-icons/bootstrap/";
 import styled from "styled-components";
 import dayjs from "dayjs";
@@ -13,11 +13,27 @@ import useNotes from "../../hooks/Notes/useNotes";
 dayjs.locale(es);
 
 const Notes = () => {
-  const { anchorEl, open, toggleDrawer } = useNotes();
+  const {
+    anchorEl,
+    open,
+    toggleDrawer,
+    notes,
+    loading,
+    note,
+    handleChangeNote,
+    createNote,
+  } = useNotes();
   return (
     <Wrapper>
       <>
-        <ModalCreateNote anchor={anchorEl} open={open} onClose={toggleDrawer} />
+        <ModalCreateNote
+          note={note}
+          handleChangeNote={handleChangeNote}
+          createNote={createNote}
+          anchor={anchorEl}
+          open={open}
+          onClose={toggleDrawer}
+        />
         <Header>
           <Stack direction="row" spacing={3} alignItems="center">
             <Filter size={20} />
@@ -43,29 +59,26 @@ const Notes = () => {
             Agregar Nota
           </Button>
           <Grid container spacing={2}>
-            <Grid item xs={3}>
-              <Stack alignItems="center" spacing={2} justifyContent="center">
-                <Card />
-              </Stack>
-            </Grid>
-            <Grid item xs={3}>
-              <Stack alignItems="center" spacing={2} justifyContent="center">
-                <Card />
-                <Card />
-              </Stack>
-            </Grid>
-            <Grid item xs={3}>
-              <Stack alignItems="center" spacing={3} justifyContent="center">
-                <Card />
-                <Card />
-                <Card />
-              </Stack>
-            </Grid>
-            <Grid item xs={3}>
-              <Stack alignItems="center" spacing={2} justifyContent="center">
-                <Card />
-              </Stack>
-            </Grid>
+            {loading
+              ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
+                  <Grid item xs={3}>
+                    <Skeleton
+                      key={item}
+                      variant="rect"
+                      width="100%"
+                      height="12rem"
+                    />
+                  </Grid>
+                ))
+              : notes.map((note) => (
+                  <Grid item xs={3}>
+                    <Card
+                      title={note.title}
+                      description={note.description}
+                      time={note.date_at_created}
+                    />
+                  </Grid>
+                ))}
           </Grid>
         </Header>
       </>

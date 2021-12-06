@@ -3,7 +3,7 @@ import axios from "axios";
 
 const isProduction = false;
 
-const URL_BASE = isProduction ? "URL_API" : "http://localhost:3000/api/";
+const URL_BASE = isProduction ? "URL_API" : "http://localhost:8000/api/";
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
