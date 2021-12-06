@@ -4,17 +4,35 @@ import { Stack, Grid } from "@mui/material";
 import { History } from "styled-icons/boxicons-regular";
 import dayjs from "dayjs";
 import es from "dayjs/locale/es";
-import { ArrowRightShort } from "styled-icons/bootstrap";
+// import { ArrowRightShort } from "styled-icons/bootstrap";
 import Wrapper from "../../components/Generics/Wrapper";
 import Palette from "../../styles/palette";
 import Card from "../../components/Inicio/Card";
+import ModalCreateRoutine from "../../components/Routines/ModalCreateRoutine";
+import useRoutines from "../../hooks/Notes/useRoutines";
 
 dayjs.locale(es);
 
 const Rutinas = () => {
+  const {
+    openDrawer,
+    toggleDrawer,
+    routine,
+    routines,
+    handleRoutine,
+    addRoutine,
+  } = useRoutines();
+
   return (
     <Wrapper>
       <ContainerMain>
+        <ModalCreateRoutine
+          open={openDrawer}
+          routine={routine}
+          addRoutine={addRoutine}
+          handleRoutine={handleRoutine}
+          onClose={toggleDrawer}
+        />
         <HeaderRuntimes>
           <Stack direction="row" alignItems="center" spacing={2}>
             <History size={25} />
@@ -26,14 +44,18 @@ const Rutinas = () => {
             justifyContent="space-between"
           >
             <h1>RUTINAS</h1>
-            <Button type="button">Agregar rutina</Button>
+            <Button type="button" onClick={toggleDrawer}>
+              Agregar rutina
+            </Button>
             <section className="date">
               <div>
                 <p>{dayjs().format("dddd").substr(0, 3)}</p>
                 <p>{dayjs().format("D")}</p>
               </div>
               <div className="separator" />
-              <p>4 rutinas</p>
+              <p>
+                {routines.length} {routines.length > 1 ? "rutinas" : "rutina"}{" "}
+              </p>
             </section>
           </Stack>
         </HeaderRuntimes>
@@ -45,11 +67,11 @@ const Rutinas = () => {
                 <section className="runtimesList">
                   <Stack spacing={2}>
                     <ul>
-                      {[1, 2, 3, 4, 5, 6].map((item) => (
+                      {routines.map((routine, index) => (
                         <li>
                           <Stack direction="row" alignItems="center">
-                            <p>{item}.</p>
-                            <p>Sentadillas</p>
+                            <p>{index + 1}.</p>
+                            <p>{routine.name}</p>
                           </Stack>
                         </li>
                       ))}
@@ -62,13 +84,14 @@ const Rutinas = () => {
               <ContainerCards>
                 <h2>Próximas rutinas</h2>
                 <Stack alignItems="center" spacing={3}>
-                  <Card />
-                  <Card />
-                  <Card />
+                  {routines.map((routine) => (
+                    <Card
+                      title={routine.name}
+                      description={routine.description}
+                      time={routine.date_at_created}
+                    />
+                  ))}
                 </Stack>
-                <ViewAll>
-                  <ArrowRightShort size={20} /> Ver todas
-                </ViewAll>
               </ContainerCards>
             </Grid>
           </Grid>
@@ -87,6 +110,7 @@ const BodyRuntimes = styled.div`
 `;
 
 const HeaderRuntimes = styled.header`
+  margin-bottom: 20px;
   svg {
     color: #858585;
   }
@@ -125,6 +149,7 @@ const Button = styled.button`
   background: ${Palette.blueColor};
   color: ${Palette.white};
   border: none;
+  cursor: pointer;
 `;
 
 const ContainerBody = styled.div`
@@ -173,12 +198,12 @@ const ContainerCards = styled.section`
   padding: 15px 30px;
 `;
 
-const ViewAll = styled.span`
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: ${Palette.blueColor};
-`;
+// const ViewAll = styled.span`
+//   margin-top: 20px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   color: ${Palette.blueColor};
+// `;
 
 export default Rutinas;

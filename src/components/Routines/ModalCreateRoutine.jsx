@@ -1,11 +1,11 @@
 import React from "react";
-import { PropTypes } from "prop-types";
-import { Drawer, Box, Typography, Stack } from "@mui/material";
+import { Drawer, Box, Stack, Typography } from "@mui/material";
+import { instanceOf, PropTypes } from "prop-types";
 import styled from "styled-components";
 import palette from "../../styles/palette";
 
-const ModalCreateNote = function (props) {
-  const { open, onClose, note, handleChangeNote, createNote } = props;
+const ModalCreateRoutine = (props) => {
+  const { open, onClose, handleRoutine, routine, addRoutine } = props;
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
       <Box style={{ minWidth: "40vw", height: "100%" }}>
@@ -18,19 +18,19 @@ const ModalCreateNote = function (props) {
           <Typography variant="h4">Aqui puedes crear una nota</Typography>
           <Input
             type="text"
-            name="title"
-            value={note.title}
-            onChange={handleChangeNote}
-            placeholder="Titulo de la nota"
+            name="name"
+            value={routine.name}
+            onChange={handleRoutine}
+            placeholder="Nombre de la rutina"
           />
           <TextArea
             type="text"
             name="description"
-            value={note.description}
-            onChange={handleChangeNote}
+            value={routine.description}
+            onChange={handleRoutine}
             placeholder="Descripcion"
           />
-          <Button onClick={createNote} type="button">
+          <Button type="button" onClick={addRoutine}>
             Crear
           </Button>
         </Stack>
@@ -73,20 +73,20 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-ModalCreateNote.propTypes = {
+ModalCreateRoutine.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
-  note: PropTypes.instanceOf(Object),
-  handleChangeNote: PropTypes.func,
-  createNote: PropTypes.func,
+  routine: instanceOf(Object),
+  handleRoutine: PropTypes.func,
+  addRoutine: PropTypes.func,
 };
 
-ModalCreateNote.defaultProps = {
+ModalCreateRoutine.defaultProps = {
   open: false,
-  note: {},
-  handleChangeNote: () => {},
-  createNote: () => {},
+  routine: {},
   onClose: () => {},
+  handleRoutine: () => {},
+  addRoutine: () => {},
 };
 
-export default ModalCreateNote;
+export default ModalCreateRoutine;
