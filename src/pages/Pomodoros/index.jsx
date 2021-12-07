@@ -1,12 +1,70 @@
 import React from "react";
 import styled from "styled-components";
 import { History, Delete } from "styled-icons/fluentui-system-filled";
-import { Settings2Outline } from "styled-icons/evaicons-outline";
-import dayjs from "dayjs";
 import Wrapper from "../../components/Generics/Wrapper";
 import Palette from "../../styles/palette";
+import { postData, getData, deleteData} from '../../system/fetchs'
+import Timer from './timer'
 
 const Pomodoros = () => {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 1500); // 10 minutes timer
+
+  const dataForm = {
+    name: '',
+    duration: 0,
+    description: '',
+    restDuration: 0,
+    timeFormat: '',
+    category: 'tarea',
+    userId: '61ad7b3de8bc382bf2b6ca58'
+  }
+
+  const [datos, setDatos] = React.useState(dataForm)
+  const [arrayPomodoros, setArrayPomodoros] = React.useState('')
+
+  React.useEffect(async () => {
+    const data = await getData(`pomodoro/history/get/all/${datos.userId}`)
+    const dataReady = data.info.info
+    setArrayPomodoros(dataReady)
+  }, [])
+
+  const onDelete = async(id) => {
+    const response = await deleteData(`pomodoro/history/delete/${id}/${datos.userId}`)
+    if (response.success) {
+      const pomodoroIndex = arrayPomodoros.findIndex(pomodoro => pomodoro.id === id)
+      const newPomodoros = [...arrayPomodoros]
+      newPomodoros.splice(pomodoroIndex, 1)
+      setArrayPomodoros(newPomodoros)
+    }
+  }
+
+  const onSubmit = async(e) => {
+    e.preventDefault()
+    const { name, description } = datos;
+    if (name !== '' && description !== '') {
+      const response = await postData('pomodoro/history/create', datos)
+      if (response.success) {
+        const copyPomodorosArray = arrayPomodoros.slice()
+        copyPomodorosArray.push(response.info.info)
+        setArrayPomodoros(copyPomodorosArray)
+        setDatos(dataForm)
+      }
+    } else {
+      console.log('faltan datos')
+    }
+  }
+
+  const handleChange = (e) => {
+    const { target } = e
+    const { name, value } = target
+    const newValues = {
+      ...datos,
+      [name]: value,
+    };
+    setDatos(newValues)
+  }
+
   return (
     <Wrapper>
       <ContainerPomodoros>
@@ -21,56 +79,40 @@ const Pomodoros = () => {
         <ContainerBody>
           <Card>
             <header>
-              <h1>Pomodoro #1</h1>
-              <Settings2Outline />
+              <h1>Pomodoro #{arrayPomodoros.length + 1}</h1>
             </header>
             <div className="timer">
-              <h1>25: 00</h1>
+              <h1><Timer expiryTimestamp={time}/></h1>
             </div>
-            <footer>
-              <button type="button">Iniciar</button>
-              <button type="button">Detener</button>
-            </footer>
           </Card>
           <Subtitle>
             <h1>Tareas</h1>
             <hr />
           </Subtitle>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <div>
-              <select name="" id="">
-                <option value="">Categoria</option>
+              <select placeholder="Categoria" id="category" name="category" value={datos.category} onChange={handleChange} >
+                <option value="Tarea">Tarea</option>
+                <option value="Casa">Casa</option>
               </select>
-              <input type="text" placeholder="Titulo de tarea" />
+              <input type="text" placeholder="Titulo de tarea" value={datos.name} id="name" name="name" onChange={handleChange} />
             </div>
-            <textarea type="text" placeholder="Descripción de la tarea" />
+            <textarea type="text" placeholder="Descripción de la tarea" id="description" name="description" value={datos.description} onChange={handleChange} />
             <button type="submit">Agregar tarea</button>
           </Form>
           <CardsContainer>
-            <CardActivity>
-              <div>
-                <p>Nombre de la tarea</p>
-                <p>Descripcion de la tarea</p>
-              </div>
-              <div>
-                <p>
-                  {dayjs().format("hh")}: {dayjs().format("mm")}
-                </p>
-                <Delete />
-              </div>
-            </CardActivity>
-            <CardActivity>
-              <div>
-                <p>Nombre de la tarea</p>
-                <p>Descripcion de la tarea</p>
-              </div>
-              <div>
-                <p>
-                  {dayjs().format("hh")}: {dayjs().format("mm")}
-                </p>
-                <Delete />
-              </div>
-            </CardActivity>
+            {arrayPomodoros ? arrayPomodoros.map((data) => (
+              <CardActivity key={data.id}>
+                <div>
+                  <p>{data.name}</p>
+                  <p>{data.description}</p>
+                </div>
+                <div>
+                  <p>25: 00</p>
+                  <Delete onClick={() => onDelete(data.id)} />
+                </div>
+              </CardActivity>
+            )) : 'Crear Tu Primer Pomodoro'}
           </CardsContainer>
         </ContainerBody>
       </ContainerPomodoros>
