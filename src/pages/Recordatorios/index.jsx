@@ -2,16 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
 import dayjs from "dayjs";
+import { Skeleton } from "@mui/material";
 import Palette from "../../styles/palette";
 import Wrapper from "../../components/Generics/Wrapper";
+import useReminders from "../../hooks/Notes/useReminders";
+import ModalCreateReminders from "../../components/Reminders/ModalCreateReminders";
 
 const Reminders = () => {
-  const array = [{}, {}, {}, {}];
+  const {
+    reminders,
+    loading,
+    handleOpenDrawer,
+    openDrawer,
+    reminder,
+    handleReminder,
+    createReminder,
+  } = useReminders();
+
   return (
     <Wrapper>
+      <ModalCreateReminders
+        open={openDrawer}
+        onClose={handleOpenDrawer}
+        reminder={reminder}
+        handleReminder={handleReminder}
+        createReminder={createReminder}
+      />
       <ContainerMain>
         <header>
           <h1>RECORDATORIOS</h1>
+          <Button type="button" onClick={handleOpenDrawer}>
+            Crear recordatorio
+          </Button>
         </header>
         <Grid>
           <div className="calendar">
@@ -26,22 +48,34 @@ const Reminders = () => {
                 <p className="number-day">{dayjs().format("D")}</p>
               </div>
               <div className="numbers-reminders">
-                <p>4 recordatorios</p>
+                <p>
+                  {reminders.length}
+                  {reminders.length > 1 ? "recordatorios" : "recordatorio"}
+                </p>
               </div>
             </header>
-            {array.map(() => (
-              <Card>
-                <header>
-                  <h5>Note title</h5>
-                  <div className="chip-time">24 min</div>
-                </header>
-                <p>
-                  Realiza tus sesiones de pomodoros, manten tu concentración y
-                  mejora tu productividad.
-                </p>
-                <div className="border" />
-              </Card>
-            ))}
+            {loading
+              ? [1, 2, 3, 4].map((skeleton) => (
+                  <Skeleton
+                    key={skeleton}
+                    variant="rect"
+                    width="70%"
+                    height="12rem"
+                    style={{ marginBottom: "1rem" }}
+                  />
+                ))
+              : reminders?.map((reminder) => (
+                  <Card>
+                    <header>
+                      <h5>{reminder.title}</h5>
+                      <div className="chip-time">
+                        {dayjs(reminder?.date_at_created).format("DD/MM/YY")}
+                      </div>
+                    </header>
+                    <p>{reminder.description}</p>
+                    <div className="border" />
+                  </Card>
+                ))}
           </div>
         </Grid>
       </ContainerMain>
@@ -114,6 +148,7 @@ const Card = styled.div`
   box-shadow: ${Palette.shadow};
   border-radius: 18px;
   min-height: 12rem;
+  width: 70%;
   max-width: 70%;
   flex-wrap: nowrap;
   position: relative;
@@ -147,6 +182,20 @@ const Card = styled.div`
     top: 10%;
     left: 0;
   }
+`;
+
+const Button = styled.button`
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 1rem;
+  background: ${Palette.blueColor};
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+  outline: none;
+  cursor: pointer;
 `;
 
 export default Reminders;
