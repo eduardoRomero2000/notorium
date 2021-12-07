@@ -57,13 +57,12 @@ export const putData = async (url, data) => {
   }
 };
 
-export const deleteData = async (url, data) => {
+export const deleteData = async (url) => {
   try {
     const response = await axios.request({
       url,
       baseURL: URL_BASE,
       method: "DELETE",
-      data,
       headers,
     });
     return { success: true, info: response.data };
