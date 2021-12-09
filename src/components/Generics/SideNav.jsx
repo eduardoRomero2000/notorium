@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HomeSmile, Edit, Dumbbell } from "styled-icons/boxicons-regular";
 import { Alarm, Bell } from "styled-icons/bootstrap";
-import { Settings } from "styled-icons/feather";
+// import { Settings } from "styled-icons/feather";
 import logNotorium from "../../assets/LogoNotorium.png";
-import ChangoProfile from "../../assets/Chango profile.png";
+import ChangoProfile from "../../assets/Macaco navideno.png";
 import Palette from "../../styles/palette";
 
 const SideNav = () => {
@@ -91,7 +91,7 @@ const SideNav = () => {
           </div>
         </Link>
       </CardItems>
-      <CardItems>
+      {/* <CardItems>
         <Link
           className={
             locationMenu === "/preferences" ? "menu-items active" : "menu-items"
@@ -105,7 +105,7 @@ const SideNav = () => {
             <span>Preferencias</span>
           </div>
         </Link>
-      </CardItems>
+      </CardItems> */}
     </ContainerSideMain>
   );
 };

@@ -4,9 +4,10 @@ import Calendar from "react-calendar";
 import dayjs from "dayjs";
 import Palette from "../../styles/palette";
 import Wrapper from "../../components/Generics/Wrapper";
+import Card from "../../components/Inicio/Card";
+import {reminders} from "../../mocks/notes.json";
 
 const Reminders = () => {
-  const array = [{}, {}, {}, {}];
   return (
     <Wrapper>
       <ContainerMain>
@@ -29,18 +30,8 @@ const Reminders = () => {
                 <p>4 recordatorios</p>
               </div>
             </header>
-            {array.map(() => (
-              <Card>
-                <header>
-                  <h5>Note title</h5>
-                  <div className="chip-time">24 min</div>
-                </header>
-                <p>
-                  Realiza tus sesiones de pomodoros, manten tu concentración y
-                  mejora tu productividad.
-                </p>
-                <div className="border" />
-              </Card>
+            {reminders.map((reminder) => (
+              <Card title={reminder.title} description={reminder.description} time={reminder.time} mb />
             ))}
           </div>
         </Grid>
@@ -107,46 +98,5 @@ const Grid = styled.section`
   }
 `;
 
-const Card = styled.div`
-  margin-top: 2rem;
-  padding: 1rem 1rem;
-  background: ${Palette.backgroundCards};
-  box-shadow: ${Palette.shadow};
-  border-radius: 18px;
-  min-height: 12rem;
-  max-width: 70%;
-  flex-wrap: nowrap;
-  position: relative;
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    h5 {
-      font-size: 1.6rem;
-    }
-    .chip-time {
-      background: ${Palette.blueColor};
-      color: ${Palette.white};
-      height: 2rem;
-      width: 6rem;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  p {
-    font-size: 1.3rem;
-  }
-  .border {
-    position: absolute;
-    width: 4px;
-    height: 82%;
-    background: ${Palette.blueColor};
-    top: 10%;
-    left: 0;
-  }
-`;
 
 export default Reminders;

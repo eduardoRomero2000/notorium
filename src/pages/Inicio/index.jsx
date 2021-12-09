@@ -8,11 +8,11 @@ import Card from "../../components/Inicio/Card";
 import Palette from "../../styles/palette";
 import "react-calendar/dist/Calendar.css";
 import Wrapper from "../../components/Generics/Wrapper";
+import {notes, reminders} from "../../mocks/notes.json";
 
 dayjs.locale(es);
 
 const Beginning = () => {
-  const cardsMap = [{}, {}, {}, {}];
   const valueDate = new Date();
   return (
     <Wrapper>
@@ -27,8 +27,8 @@ const Beginning = () => {
         <NotesContainer>
           <h1>Inicio</h1>
           <ContainerCards>
-            {cardsMap.map(() => (
-              <Card />
+            {notes.map((note) => (
+              <Card title={note.title} description={note.description} time={note.time} />
             ))}
           </ContainerCards>
           <hr />
@@ -55,8 +55,8 @@ const Beginning = () => {
                 </div>
               </header>
               <div className="container-items">
-                {cardsMap.map(() => (
-                  <Card />
+                {reminders.map((reminder) => (
+                  <Card title={reminder.title} description={reminder.description} time={reminder.time} />
                 ))}
               </div>
             </div>

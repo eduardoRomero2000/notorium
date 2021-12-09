@@ -1,0 +1,47 @@
+{
+    "notes": [
+        {
+            "title": "Nuevo titulo",
+            "description": "Descripcion nueva",
+            "time": "05/12/2021"
+        },
+        {
+            "title": "Otro titulo",
+            "description": "Otra descripcion",
+            "time": "02/12/2021"
+        },
+        {
+            "title": "New title",
+            "description": "New description",
+            "time": "01/12/2021"
+        },
+        {
+            "title": "Otra cosa",
+            "description": "Yaaaaaarn",
+            "time": "08/12/2021"
+        }
+
+    ],
+    "reminders": [
+        {
+            "title": "Nuevo reminder",
+            "description": "Descripcion nueva",
+            "time": "05/12/2021"
+        },
+        {
+            "title": "Otro reminder",
+            "description": "Otra descripcion",
+            "time": "02/12/2021"
+        },
+        {
+            "title": "New reminder",
+            "description": "New description",
+            "time": "01/12/2021"
+        },
+        {
+            "title": "Otra cosa",
+            "description": "Yaaaaaarn",
+            "time": "08/12/2021"
+        }
+    ]
+}
